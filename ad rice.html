@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ad Rise Agency - Creative Digital Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #2B2B2B;
+      --accent: #FFB400;
+      --light: #FFFFFF;
+      --font: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/2B2B2B/FFFFFF?text=Digital+Marketing') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--light);
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.3s;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.6s;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--primary);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.9s;
+    }
+
+    .cta-button:hover {
+      background-color: #e09e00;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Why Choose Us Section */
+    .why-us {
+      padding: 100px 5%;
+      background-color: #f9f9f9;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background-color: var(--accent);
+      bottom: -10px;
+      left: 0;
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background-color: var(--light);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 100px 5%;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      background-color: var(--light);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .service-card a:hover {
+      color: #e09e00;
+    }
+
+    /* SEO Section */
+    .seo-section {
+      padding: 100px 5%;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .seo-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .seo-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease;
+    }
+
+    .seo-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .seo-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 100px 5%;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: var(--accent);
+      color: var(--primary);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .submit-btn:hover {
+      background-color: #e09e00;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-icon {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .info-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary);
+      color: var(--light);
+      border-radius: 50%;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: var(--light);
+      padding: 30px 5%;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .copyright {
+      font-size: 1rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      color: var(--light);
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: var(--accent);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Intersection Observer for scroll animations */
+    .animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .animate.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 5%;
+      }
+
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        gap: 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+        text-align: center;
+      }
+
+      nav a {
+        display: block;
+        padding: 0.5rem 1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .why-us, .seo-section, .contact {
+        flex-direction: column;
+      }
+
+      .seo-image, .contact-form, .contact-info {
+        width: 100%;
+      }
+
+      footer .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .cta-button, .btn, .submit-btn {
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <a href="#home" class="logo">Ad <span>Rise</span> Agency</a>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#seo">SEO</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Elevate Your Brand with Strategic Digital Marketing</h1>
+    <p>We help businesses grow through data-driven marketing strategies and creative solutions that deliver measurable results.</p>
+    <a href="#contact" class="cta-button">Get Started</a>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-us" id="why-us">
+    <h2 class="section-title">Why Choose AD Rise Agency</h2>
+    <p style="text-align: center; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto; color: #555;">
+      We combine creativity, data, and technology to deliver exceptional marketing results for our clients.
+    </p>
+    <div class="features-container">
+      <div class="feature-card animate">
+        <div class="feature-icon">
+          <i class="fas fa-chart-bar"></i>
+        </div>
+        <h3>Data-Driven Approach</h3>
+        <p>We make decisions based on comprehensive data analysis, ensuring your marketing budget is invested where it matters most.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3>Mobile-First Strategy</h3>
+        <p>We design and optimize all digital assets for mobile users first, ensuring the best experience across all devices.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Rapid Implementation</h3>
+        <p>Our agile approach allows us to quickly implement strategies and adapt to market changes, giving you a competitive edge.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Expert Team</h3>
+        <p>Our specialists bring years of experience across various industries, providing you with insights and strategies that work.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h3>Proven Results</h3>
+        <p>Our track record speaks for itself with case studies showing significant ROI improvements for our clients across various sectors.</p>
+      </div>
+      <div class="feature-card animate">
+        <div class="feature-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <h3>Cloud Integration</h3>
+        <p>We leverage cloud technologies to ensure your marketing systems are scalable, secure, and accessible from anywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h2 class="section-title">Our Services</h2>
+    <p style="text-align: center; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto; color: #555;">
+      Comprehensive digital marketing solutions tailored to your business goals.
+    </p>
+    <div class="services-container">
+      <div class="service-card animate">
+        <div class="service-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <h3>Search Engine Optimization</h3>
+        <p>Improve your website's visibility in search results and drive organic traffic with our comprehensive SEO strategies.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon">
+          <i class="fas fa-ad"></i>
+        </div>
+        <h3>Pay-Per-Click Advertising</h3>
+        <p>Maximize your ROI with targeted PPC campaigns across Google, Bing, and social media platforms.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon">
+          <i class="fas fa-hashtag"></i>
+        </div>
+        <h3>Social Media Marketing</h3>
+        <p>Build brand awareness and engage with your audience through strategic social media campaigns.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon">
+          <i class="fas fa-pen-fancy"></i>
+        </div>
+        <h3>Content Marketing</h3>
+        <p>Create valuable, relevant content that attracts and retains your target audience while driving profitable customer action.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Email Marketing</h3>
+        <p>Nurture leads and drive conversions with personalized email campaigns that deliver the right message at the right time.</p>
+        <a href="#">Learn more →</a>
+      </div>
+      <div class="service-card animate">
+        <div class="service-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Analytics & Reporting</h3>
+        <p>Gain valuable insights into your marketing performance with comprehensive analytics and custom reporting.</p>
+        <a href="#">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Section -->
+  <section class="seo-section" id="seo">
+    <div class="seo-content">
+      <h2 class="section-title">Boost Your Online Visibility with Our SEO Expertise</h2>
+      <p style="margin-bottom: 1.5rem; color: #555; font-size: 1.1rem;">
+        Our comprehensive SEO strategies help your business rank higher in search results, driving more qualified traffic to your website.
+      </p>
+      <a href="#contact" class="btn">Get a Free SEO Audit</a>
+    </div>
+    <div class="seo-image animate">
+      <img src="https://placehold.co/600x500/2B2B2B/FFFFFF?text=SEO+Analysis" alt="SEO Analysis" />
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-form">
+      <h2 class="section-title">Get In Touch</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <h3>Contact Information</h3>
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="info-text">
+          <h4>Address</h4>
+          <p>123 Digital Street, Tech City, TC 12345</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <div class="info-text">
+          <h4>Phone</h4>
+          <p>+91 9600645753</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="info-text">
+          <h4>Email</h4>
+          <p>aaa.archu74@gmail.com</p>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p class="copyright">Copyright © 2025 Ad Rise Agency</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('nav ul').classList.toggle('show');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('nav ul').classList.remove('show');
+      });
+    });
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+
+    // Scroll animations
+    const animateElements = document.querySelectorAll('.animate, .seo-image');
+
+    function checkPosition() {
+      animateElements.forEach(element => {
+        const positionFromTop = element.getBoundingClientRect().top;
+        if (positionFromTop - window.innerHeight <= 0) {
+          element.classList.add('appear');
+        }
+      });
+    }
+
+    // Initial check
+    window.addEventListener('load', checkPosition);
+    // Check on scroll
+    window.addEventListener('scroll', checkPosition);
+
+    // Parallax effect for hero background
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
